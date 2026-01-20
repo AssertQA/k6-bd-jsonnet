@@ -58,7 +58,7 @@ The extension injects `generateTestData` as a Jsonnet external variable. In
 Jsonnet, access it using:
 
 ```jsonnet
-std.extVar("generateTestData")
+std.extVar("generateTestData") == "true"
 ```
 
 Use this to switch between realistic fake data and fixed/static values.
@@ -78,16 +78,16 @@ call it will fail during Jsonnet evaluation.
 
 ```jsonnet
 {
-  id: std.extVar("generateTestData")
+  id: std.extVar("generateTestData") == "true"
     ? fake("{number:1000,9999}")
     : "1001",
-  name: std.extVar("generateTestData")
+  name: std.extVar("generateTestData") == "true"
     ? fake("{firstname} {lastname}")
     : "Jane Doe",
-  email: std.extVar("generateTestData")
+  email: std.extVar("generateTestData") == "true"
     ? fake("{email}")
     : "jane@example.com",
-  createdAt: std.extVar("generateTestData")
+  createdAt: std.extVar("generateTestData") == "true"
     ? fake("{date}")
     : "2024-01-01",
 }
